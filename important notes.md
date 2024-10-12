@@ -73,22 +73,22 @@ Add the export script:
 
 Here’s an example Dockerfile:
 
-```dockerfile
+```bash
 # Use the Node.js 18 Alpine image for building
-FROM node:18-alpine AS builder
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build
-RUN npm run export  # Build and export the app
+    FROM node:18-alpine AS builder
+    WORKDIR /app
+    COPY package*.json ./
+    RUN npm install
+    COPY . .
+    RUN npm run build
+    RUN npm run export  # Build and export the app
 
-# Use NGINX to serve the exported files
-FROM nginx:alpine
-COPY --from=builder /app/out /usr/share/nginx/html  # Adjust the path
-COPY ./conf /etc/nginx/conf.d
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+    # Use NGINX to serve the exported files
+    FROM nginx:alpine
+    COPY --from=builder /app/out /usr/share/nginx/html  # Adjust the path
+    COPY ./conf /etc/nginx/conf.d
+    EXPOSE 80
+    CMD ["nginx", "-g", "daemon off;"]
 ```
 
 ### Explanation:
