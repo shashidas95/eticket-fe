@@ -7,7 +7,7 @@ pipeline {
         GIT_REPO = "https://github.com/shashidas95/eticket-fe"
         CLIENT_APP_NAME = "eticket-fe"
         CLIENT_APP_IMAGE = "${DOCKERHUB_USERNAME}/${CLIENT_APP_NAME}"
-        CONFIG_PROJECT_NAME = "demo_config"
+        CONFIG_PROJECT_NAME = "eticket-fe-config"
      }
      
     stages {
@@ -53,7 +53,7 @@ pipeline {
 
         stage("TRIGGERING THE CONFIG PIPELINE"){
             steps{
-                build job: 'demo_config', parameters: [string(name: 'IMAGE_TAG', value: env.IMAGE_TAG)]
+                build job: 'eticket-fe-config', parameters: [string(name: 'IMAGE_TAG', value: env.IMAGE_TAG)]
             }
         }
         
