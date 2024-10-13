@@ -53,7 +53,7 @@ pipeline {
 
         stage("TRIGGERING THE CONFIG PIPELINE"){
             steps{
-                build job: 'demo_config', parameters: [string(name: 'IMAGE_TAG', value: env.IMAGE_TAG)]
+                build job: 'eticket-fe-config', parameters: [string(name: 'IMAGE_TAG', value: env.IMAGE_TAG)]
             }
         }
         
